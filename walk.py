@@ -3,13 +3,12 @@ import pyautogui
 import time
 
 
-# 2s = 9 blocks
-# 0.2s = 1 block
+# One block = .215s
+
 b = 0
 
-
 def walk(x, key):
-    x = x * .23
+    x = x * .215 
 
     pyautogui.keyDown(key)
     time.sleep(x)
@@ -17,8 +16,8 @@ def walk(x, key):
 
     
 
-def walking(b):
-    walk(b, 'd')
+def walking(blocks):
+    walk(blocks, 'd')
     walk(1, 's')
-    walk(b, 'a')
+    walk(blocks, 'a')
     walk(1, 'w')

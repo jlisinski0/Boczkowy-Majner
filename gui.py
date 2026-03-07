@@ -1,6 +1,5 @@
 import customtkinter as ctk
-
-
+import keyboard
 
 def run(start_cb, stop_cb):
     ctk.set_appearance_mode("dark")
@@ -8,6 +7,7 @@ def run(start_cb, stop_cb):
     app = ctk.CTk()        
     app.geometry("500x500")
     app.title("BoczkowyMajner")
+    app.iconbitmap("boczek.ico")
     label = ctk.CTkLabel(app, text="BoczkowyMajner 2000")
     label.pack(pady=20)
     labelBlocks = ctk.CTkLabel(app, text="Na ile blokow stowniarka:")
@@ -18,42 +18,80 @@ def run(start_cb, stop_cb):
     labelCommands.pack(pady=5)
 
     # Commands
-    entryCommandOne = ctk.CTkEntry(app)
-    entryCommandOne.pack(pady=10)
 
-    entryCommandTwo = ctk.CTkEntry(app)
-    entryCommandTwo.pack(pady=10)
+    row1 = ctk.CTkFrame(app)
+    row1.pack(pady=10)
 
-    entryCommandThree = ctk.CTkEntry(app)
-    entryCommandThree.pack(pady=10)
+    row2 = ctk.CTkFrame(app)
+    row2.pack(pady=10)
 
-    entryCommandFour = ctk.CTkEntry(app)
-    entryCommandFour.pack(pady=10)
+    row3 = ctk.CTkFrame(app)
+    row3.pack(pady=10)
 
+    row4 = ctk.CTkFrame(app)
+    row4.pack(pady=10)
 
+    # First row 
+    entryCommandOne = ctk.CTkEntry(row1, width=200)
+    entryCommandOne.pack(side="left", padx=(0,5))
+
+    entrySmallOne = ctk.CTkEntry(row1, width=30)
+    entrySmallOne.pack(side="left")
+
+    # Second row
+    entryCommandTwo = ctk.CTkEntry(row2, width=200)
+    entryCommandTwo.pack(side="left", padx=(0,5))
+
+    entrySmallTwo = ctk.CTkEntry(row2, width=30)
+    entrySmallTwo.pack(side="left")
+    
+    # Third row
+    entryCommandThree = ctk.CTkEntry(row3, width=200)
+    entryCommandThree.pack(side="left", padx=(0,5))
+
+    entrySmallThree = ctk.CTkEntry(row3, width=30)
+    entrySmallThree.pack(side="left")
+
+    # Fourth row
+    entryCommandFour = ctk.CTkEntry(row4, width=200)
+    entryCommandFour.pack(side="left", padx=(0,5))
+
+    entrySmallFour = ctk.CTkEntry(row4, width=30)
+    entrySmallFour.pack(side="left")
 
     def on_start():
         try:
-            x = [
+            
+
+
+            commands = [
                 entryCommandOne.get(),
                 entryCommandTwo.get(),
                 entryCommandThree.get(),
                 entryCommandFour.get()
             ]
 
+            laps = [
+                 entrySmallOne.get(),
+                 entrySmallTwo.get(),
+                 entrySmallThree.get(),
+                 entrySmallFour.get(),
+            ]
 
-            b = int(entry.get())
-            start_cb(b, x)
-            print(x)
+           
+            blocks = int(entry.get())
+            start_cb(blocks, commands, laps)
         except ValueError:
-            print("podaj liczbe")
+            print("Błąd")
 
-    btn_start = ctk.CTkButton(app, text="Start", command=on_start)
+    btn_start = ctk.CTkButton(app, text="Start (f8)", command=on_start)
     btn_start.pack(pady=5)
 
-    btn_stop = ctk.CTkButton(app, text="Stop", command=stop_cb)
+    btn_stop = ctk.CTkButton(app, text="Stop (f9)", command=stop_cb)
     btn_stop.pack(pady=5)
 
+    keyboard.add_hotkey('f8', on_start)
+    keyboard.add_hotkey('f9', stop_cb)
     
     app.mainloop()    
 

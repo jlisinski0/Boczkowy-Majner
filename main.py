@@ -1,28 +1,29 @@
 import threading
 import time
-import pyautogui
-import walk
+from mining import mine
 import gui
 import universal
 
 running = False
+lap_counter = 0
 
-def start(b, x):
+def start(blocks, commands, laps):
     global running
+    global lap_counter
+
     if running:
         return
+    
     running = True
 
     def loop():
+        global lap_counter
         time.sleep(2)
-        
-        
 
         while running:
-            pyautogui.mouseDown(button='left')
-            walk.walking(b)
-            pyautogui.mouseUp(button='left')
-            universal.command(x)
+            mine(blocks)
+            lap_counter += 1
+            universal.command(commands, laps, lap_counter)
             
        
 
