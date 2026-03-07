@@ -1,13 +1,24 @@
 import customtkinter as ctk
 import keyboard
+import sys
+import os
 
-def run(start_cb, stop_cb):
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), relative_path)
+
+
+def run(start_cb, stop_cb):  
+
     ctk.set_appearance_mode("dark")
 
+
+
     app = ctk.CTk()        
-    app.geometry("500x500")
-    app.title("BoczkowyMajner")
-    app.iconbitmap("boczek.ico")
+    app.geometry("700x700")
+    app.title("BoczkowyMajner 1.0")
+    app.iconbitmap(resource_path("boczek.ico"))
     label = ctk.CTkLabel(app, text="BoczkowyMajner 2000")
     label.pack(pady=20)
     labelBlocks = ctk.CTkLabel(app, text="Na ile blokow stowniarka:")
@@ -30,6 +41,15 @@ def run(start_cb, stop_cb):
 
     row4 = ctk.CTkFrame(app)
     row4.pack(pady=10)
+
+    row5 = ctk.CTkFrame(app)
+    row5.pack(pady=10)
+
+    row6 = ctk.CTkFrame(app)
+    row6.pack(pady=10)
+
+    row7 = ctk.CTkFrame(app)
+    row7.pack(pady=10)
 
     # First row 
     entryCommandOne = ctk.CTkEntry(row1, width=200)
@@ -59,6 +79,26 @@ def run(start_cb, stop_cb):
     entrySmallFour = ctk.CTkEntry(row4, width=30)
     entrySmallFour.pack(side="left")
 
+    # Fifth row
+    entryCommandFive = ctk.CTkEntry(row5, width=200)
+    entryCommandFive.pack(side="left", padx=(0,5))
+
+    entrySmallFive = ctk.CTkEntry(row5, width=30)
+    entrySmallFive.pack(side="left")
+
+    # Sixth row
+    entryCommandSix = ctk.CTkEntry(row6, width=200)
+    entryCommandSix.pack(side="left", padx=(0,5))
+
+    entrySmallSix = ctk.CTkEntry(row6, width=30)
+    entrySmallSix.pack(side="left")
+
+    # Seventh row
+    entryCommandSeven = ctk.CTkEntry(row7, width=200)
+    entryCommandSeven.pack(side="left", padx=(0,5))
+
+    entrySmallSeven = ctk.CTkEntry(row7, width=30)
+    entrySmallSeven.pack(side="left")
     def on_start():
         try:
             
@@ -68,7 +108,10 @@ def run(start_cb, stop_cb):
                 entryCommandOne.get(),
                 entryCommandTwo.get(),
                 entryCommandThree.get(),
-                entryCommandFour.get()
+                entryCommandFour.get(),
+                entryCommandFive.get(),
+                entryCommandSix.get(),
+                entryCommandSeven.get()
             ]
 
             laps = [
@@ -76,6 +119,9 @@ def run(start_cb, stop_cb):
                  entrySmallTwo.get(),
                  entrySmallThree.get(),
                  entrySmallFour.get(),
+                 entrySmallFive.get(),
+                 entrySmallSix.get(),
+                 entrySmallSeven.get(),
             ]
 
            
