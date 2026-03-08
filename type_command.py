@@ -5,7 +5,6 @@ import time
 def command(commands, laps, lap_counter):
     pairs = [(cmd, lap) for cmd, lap in zip(commands, laps) if cmd.strip()]
 
-
   
     for cmd, lap in pairs:
         try:

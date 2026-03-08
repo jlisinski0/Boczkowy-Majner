@@ -2,12 +2,13 @@ import threading
 import time
 from mining import mine
 import gui
-import universal
+import type_command
+import eat_food
 
 running = False
 lap_counter = 0
 
-def start(blocks, commands, laps):
+def start(blocks, commands, laps, eating):
     global running
     global lap_counter
 
@@ -23,7 +24,8 @@ def start(blocks, commands, laps):
         while running:
             mine(blocks)
             lap_counter += 1
-            universal.command(commands, laps, lap_counter)
+            type_command.command(commands, laps, lap_counter)
+            eat_food.eat(eating, lap_counter)
             
        
 

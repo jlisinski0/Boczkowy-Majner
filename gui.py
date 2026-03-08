@@ -17,7 +17,7 @@ def run(start_cb, stop_cb):
 
     app = ctk.CTk()        
     app.geometry("700x700")
-    app.title("BoczkowyMajner 1.0")
+    app.title("BoczkowyMajner 1.1")
     app.iconbitmap(resource_path("boczek.ico"))
     label = ctk.CTkLabel(app, text="BoczkowyMajner 2000")
     label.pack(pady=20)
@@ -25,8 +25,16 @@ def run(start_cb, stop_cb):
     labelBlocks.pack(pady=5)
     entry = ctk.CTkEntry(app)
     entry.pack(pady=10)
+
+    labelFood = ctk.CTkLabel(app, text="Co ile jeść: ")
+    labelFood.pack(pady=5)
+    entryFood = ctk.CTkEntry(app)
+    entryFood.pack(pady=10) 
+
     labelCommands = ctk.CTkLabel(app, text="Komendy które mam pisac: ")
     labelCommands.pack(pady=5)
+
+
 
     # Commands
 
@@ -126,7 +134,8 @@ def run(start_cb, stop_cb):
 
            
             blocks = int(entry.get())
-            start_cb(blocks, commands, laps)
+            eating = int(entryFood.get())
+            start_cb(blocks, commands, laps, eating)
         except ValueError:
             print("Błąd")
 
