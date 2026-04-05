@@ -68,6 +68,9 @@ def run(start_cb, stop_cb):
         except ValueError:
             print("Błąd")
 
+    def stop_cb():
+        app.quit()
+
     btn_start = ctk.CTkButton(app, text="Start (f8)", command=on_start)
     btn_start.pack(pady=5)
 
